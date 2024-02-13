@@ -27,17 +27,17 @@ public class College {
         students.add(new Student(57845, "Eva", 24));
         students.add(new Student(652010, "Frank", 25));
 
-        courses.add(new Course(87545, "Computer Science 101", "B101", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(78954, "Mathematics 202", "B102", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(78212, "Physics 303", "C101", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(14525, "Chemistry 404", "C102", professors.getFirst(), new ArrayList<Student>()));
+        courses.add(new Course(87545, "Computer Science 101", "B101", professors.get(0), new ArrayList<Student>()));
+        courses.add(new Course(78954, "Mathematics 202", "B102", professors.get(1), new ArrayList<Student>()));
+        courses.add(new Course(78212, "Physics 303", "C101", professors.get(2), new ArrayList<Student>()));
+        courses.add(new Course(14525, "Chemistry 404", "C102", professors.get(1), new ArrayList<Student>()));
 
         courses.get(0).getStudents().addAll(students);
         courses.get(1).getStudents().add(students.get(2));
         courses.get(1).getStudents().add(students.get(3));
         courses.get(2).getStudents().addAll(students);
-        courses.get(3).getStudents().add(students.getFirst());
-        courses.get(3).getStudents().add(students.getLast());
+        courses.get(3).getStudents().add(students.get(0));
+        courses.get(3).getStudents().add(students.get(5));
     }
 
     public static ArrayList<Course> coursesByStudentId(int studentId){
