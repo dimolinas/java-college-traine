@@ -1,4 +1,6 @@
-package model;
+package model.person.student;
+
+import model.person.Person;
 
 public class Student extends Person {
     private int age;

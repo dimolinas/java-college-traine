@@ -1,4 +1,4 @@
-package model.professor;
+package model.person.professor;
 
 public class FullTimeProfessor extends Professor implements SalaryCalculator {
     private int hoursPerWeek;

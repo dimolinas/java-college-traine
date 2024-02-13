@@ -1,8 +1,9 @@
 package model;
-import model.professor.Professor;
+import model.person.professor.Professor;
+import model.person.student.Student;
+
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Course implements Identifiable {
     private int id;
@@ -73,7 +74,7 @@ public class Course implements Identifiable {
     @Override
     public String toString() {
         return String.format(
-                "| %-10s | %-30s | %-12s | %-20s |",
+                "| %-10s | %-30s | %-20s | %-20s |",
                 "id=" + id,
                 "name='" + name + "'",
                 "classRoom='" + classRoom + "'",

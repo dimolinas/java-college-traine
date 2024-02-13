@@ -1,8 +1,10 @@
-package model;
+package model.person;
+
+import model.Identifiable;
 
 import java.util.UUID;
 
-public abstract class Person implements Identifiable{
+public abstract class Person implements Identifiable {
     private int id;
     private String name;
 

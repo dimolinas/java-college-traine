@@ -1,7 +1,10 @@
 package view;
-
-
 import controller.College;
+import model.Course;
+import model.person.student.Student;
+import model.person.professor.Professor;
+
+import java.util.ArrayList;
 
 public class Menu {
     public static void showOptions(){
@@ -35,7 +38,7 @@ public class Menu {
                 break;
             }
             case 4: {
-                College.createCourse();
+                createCourse();
                 showOptions();
                 break;
             }
@@ -54,6 +57,51 @@ public class Menu {
                 showOptions();
             }
         }
+    }
+
+    public static void createCourse(){
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        System.out.println("                                         New Course                                                      ");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+
+        System.out.println("Enter course Id: ");
+        int id = Utils.readInteger();
+
+        System.out.println("Enter course name: ");
+        String name = Utils.readString();
+
+        System.out.print("Enter classroom: ");
+        String classRoom = Utils.readString();
+
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        Utils.showList(College.getProfessors());
+        System.out.print("Enter the id of the professor for this course: ");
+        int professorId = Utils.readInteger();
+
+        int professorIndex = Utils.getIndexById(professorId, College.getProfessors());
+        Professor professor = College.getProfessors().get(professorIndex);
+
+        ArrayList<Student> students = new ArrayList<>();
+
+        String moreStudents;
+        do {
+            Utils.showList(College.getStudents());
+            System.out.print("Enter the Id of the student to add to this course (or -1 to finish): ");
+            int studentId = Utils.readInteger();
+            if (studentId == -1) {
+                break; // Exit the loop if the user is finished adding students
+            }
+            int studentIndex = Utils.getIndexById(studentId, College.getStudents());
+            if (studentIndex != -1) {
+                students.add(College.getStudents().get(studentIndex));
+            } else {
+                System.out.println("No Student found with Id: " + studentId + ".");
+            }
+            System.out.print("Add more students? (yes/no): ");
+            moreStudents = Utils.readString();
+        } while (moreStudents.equalsIgnoreCase("yes"));
+
+        College.getCourses().add(new Course(id,name, classRoom, professor,students));
     }
 
     private static int miniMenuOption(){
@@ -81,7 +129,6 @@ public class Menu {
             System.out.println("No Student found with Id: " + idStudent + ".");
         }
     }
-
 
     private static void showCourseDetails(){
         int idCourse = miniMenuOption();

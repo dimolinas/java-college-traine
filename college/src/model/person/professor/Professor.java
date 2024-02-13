@@ -1,5 +1,6 @@
-package model.professor;
-import model.Person;
+package model.person.professor;
+
+import model.person.Person;
 
 public class Professor extends Person {
     private double baseSalary;

@@ -1,13 +1,11 @@
 package controller;
 import model.Course;
-import model.Student;
-import model.professor.FullTimeProfessor;
-import model.professor.PartTimeProfessor;
-import model.professor.Professor;
+import model.person.student.Student;
+import model.person.professor.FullTimeProfessor;
+import model.person.professor.PartTimeProfessor;
+import model.person.professor.Professor;
 import java.util.ArrayList;
-import java.util.OptionalInt;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class College {
 
@@ -57,9 +55,6 @@ public class College {
 
     }
 
-    public static void createCourse(){
-
-    }
 
     public static ArrayList<Course> getCourses() {
         return courses;

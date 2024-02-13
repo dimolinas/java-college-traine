@@ -1,7 +1,6 @@
 package view;
 
 import model.Identifiable;
-
 import java.util.ArrayList;
 import java.util.OptionalInt;
 import java.util.Scanner;

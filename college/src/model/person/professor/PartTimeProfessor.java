@@ -1,4 +1,4 @@
-package model.professor;
+package model.person.professor;
 
 public class PartTimeProfessor extends Professor implements SalaryCalculator {
     public PartTimeProfessor(int id, String name, double baseSalary) {
