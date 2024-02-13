@@ -1,15 +1,12 @@
-package model;
-
+package model.professor;
 import model.Person;
-
-import java.util.UUID;
 
 public class Professor extends Person {
     private double baseSalary;
     private double totalSalary = 0;
 
-    public Professor(UUID uuid, String name, double baseSalary) {
-        super(uuid, name);
+    public Professor(int id, String name, double baseSalary) {
+        super(id, name);
         this.baseSalary = baseSalary;
     }
 
@@ -28,4 +25,5 @@ public class Professor extends Person {
     public void setTotalSalary(double totalSalary) {
         this.totalSalary = totalSalary;
     }
+
 }

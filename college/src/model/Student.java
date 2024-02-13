@@ -1,13 +1,10 @@
 package model;
 
-import model.Person;
-
-import java.util.UUID;
-
 public class Student extends Person {
     private int age;
-    public Student(UUID uuid, String name, int age) {
-        super(uuid, name);
+
+    public Student(int id, String name, int age) {
+        super(id, name);
         this.age = age;
     }
 
@@ -17,5 +14,14 @@ public class Student extends Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + getId() +
+                ", name='" + getName() + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

@@ -3,20 +3,20 @@ package model;
 import java.util.UUID;
 
 public abstract class Person {
-    private UUID uuid;
+    private int id;
     private String name;
 
-    public Person(UUID uuid, String name) {
-        this.uuid = uuid;
+    public Person(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public int getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
