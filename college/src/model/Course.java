@@ -5,26 +5,25 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Course {
-    private UUID uuid;
+    private int id;
     private String name;
     private String classRoom;
     private Professor professor;
     private ArrayList<Student> students;
 
-    public Course(UUID uuid, String name, String classRoom, Professor professor, ArrayList<Student> students) {
-        this.uuid = uuid;
+    public Course(int id, String name, String classRoom, Professor professor, ArrayList<Student> students) {
+        this.id = id;
         this.name = name;
         this.classRoom = classRoom;
         this.professor = professor;
         this.students = students;
     }
-
-    public UUID getUuid() {
-        return uuid;
+    public int getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -63,17 +62,22 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return uuid.equals(course.uuid);
+        return id == course.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "Course{" + "uuid=" + uuid + ", name='" + name + '\'' + ", classRoom='" + classRoom + '\'' + ", professor=" + professor.getName() + '}';
+        return String.format(
+                "| %-10s | %-30s | %-12s | %-20s |",
+                "id=" + id,
+                "name='" + name + "'",
+                "classRoom='" + classRoom + "'",
+                "professor=" + professor.getName()
+        );
     }
-
 }

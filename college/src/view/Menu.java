@@ -19,23 +19,30 @@ public class Menu {
 
         switch (option){
             case 1:{
-                College.showProfessors();
+                Utils.showList(College.getProfessors());
                 Menu.showOptions();
                 break;
             }
             case 2:{
-                College.showCourses();
+                Utils.showList(College.getCourses());
+                showCourseDetails();
                 Menu.showOptions();
                 break;
             }
             case 3: {
+                College.createStudent();
                 showOptions();
+                break;
             }
             case 4: {
+                College.createCourse();
                 showOptions();
+                break;
             }
             case 5: {
+                College.showCoursesByStudent();
                 showOptions();
+                break;
             }
             case 6:{
                 System.exit(0);
@@ -48,4 +55,25 @@ public class Menu {
         }
     }
 
+    public static void showCourseDetails(){
+        System.out.println("0. Exit");
+        System.out.println("\nSelect a course to view details (or 0 to exit): ");
+
+        int choice = Utils.readInteger();
+
+        if (choice == 0) {
+            System.out.println("Exiting...");
+            Menu.showOptions();
+        }
+
+        int index = College.getCourseIndexById(choice);
+
+        if(index != -1){
+            System.out.println("---------------------------------------------------------------------------------------------------------");
+            System.out.println("Course Details: " + College.getCourses().get(index).toString());
+            Utils.showList(College.getCourses().get(index).getStudents());
+        }else{
+            System.out.println("No course found with Id: " + choice + ".");
+        }
+    }
 }

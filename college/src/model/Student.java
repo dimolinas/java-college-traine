@@ -18,10 +18,11 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", age=" + age +
-                '}';
+        return String.format(
+                "| %-15s | %-20s | %-3s |",
+                "id=" + getId(),
+                "name=" + getName(),
+                "age=" + age
+        );
     }
 }

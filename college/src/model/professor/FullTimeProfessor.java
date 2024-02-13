@@ -25,14 +25,13 @@ public class FullTimeProfessor extends Professor implements SalaryCalculator {
 
     @Override
     public String toString() {
-        return "FullTimeProfessor{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", baseSalary=" + getBaseSalary() +
-                ", hoursPerWeek=" + hoursPerWeek +
-                ", totalSalary=" + getTotalSalary() +
-                '}';
+        return String.format(
+                "| %-15s | %-20s | %-15s | %-20s | %-15s |",
+                "id=" + getId(),
+                "name='" + getName() + "'",
+                "baseSalary=" + String.format("%.2f", getBaseSalary()),
+                "totalSalary=" + String.format("%.2f", getTotalSalary()),
+                "hoursPerWeek=" + hoursPerWeek
+        );
     }
-
-
 }

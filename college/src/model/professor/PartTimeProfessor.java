@@ -10,14 +10,14 @@ public class PartTimeProfessor extends Professor implements SalaryCalculator {
     public void calculateSalary() {
         setTotalSalary(getBaseSalary() * 1.1);
     }
-
     @Override
     public String toString() {
-        return "PartTimeProfessor{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", baseSalary=" + getBaseSalary() +
-                ", totalSalary=" + getTotalSalary() +
-                '}';
+        return String.format(
+                "| %-15s | %-20s | %-15s | %-20s |",
+                "id=" + getId(),
+                "name='" + getName() + "'",
+                "baseSalary=" + String.format("%.2f", getBaseSalary()),
+                "totalSalary=" + String.format("%.2f", getTotalSalary())
+        );
     }
 }

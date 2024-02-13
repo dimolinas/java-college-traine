@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utils {
@@ -25,5 +26,13 @@ public class Utils {
 
     public static String readString(){
         return scan.nextLine();
+    }
+
+    public static <T> void showList(ArrayList<T> list) {
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        for (T item : list) {
+            System.out.println(item.toString());
+        }
+        System.out.println("---------------------------------------------------------------------------------------------------------");
     }
 }
