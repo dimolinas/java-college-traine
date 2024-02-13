@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Course {
+public class Course implements Identifiable {
     private int id;
     private String name;
     private String classRoom;

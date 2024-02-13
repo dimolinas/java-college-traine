@@ -2,7 +2,7 @@ package model;
 
 import java.util.UUID;
 
-public abstract class Person {
+public abstract class Person implements Identifiable{
     private int id;
     private String name;
 

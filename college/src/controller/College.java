@@ -4,14 +4,10 @@ import model.Student;
 import model.professor.FullTimeProfessor;
 import model.professor.PartTimeProfessor;
 import model.professor.Professor;
-import view.Utils;
-
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static view.Utils.showList;
 
 public class College {
 
@@ -44,17 +40,17 @@ public class College {
         courses.get(2).getStudents().addAll(students);
         courses.get(3).getStudents().add(students.getFirst());
         courses.get(3).getStudents().add(students.getLast());
-
     }
 
-
-    public static int getCourseIndexById(int courseId){
-        OptionalInt indexOpt = IntStream.range(0, getCourses().size())
-                .filter(i -> getCourses().get(i).getId() == courseId)
-                .findFirst();
-        return indexOpt.orElse(-1);
+    public static ArrayList<Course> coursesByStudentId(int studentId){
+        return getCourses()
+                .parallelStream()
+                .filter(course -> course
+                        .getStudents()
+                        .parallelStream()
+                        .anyMatch(student -> student.getId()== studentId))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
-
 
 
     public static void createStudent(){
@@ -62,11 +58,6 @@ public class College {
     }
 
     public static void createCourse(){
-
-    }
-
-    public static void showCoursesByStudent(){
-        showList(getStudents());
 
     }
 

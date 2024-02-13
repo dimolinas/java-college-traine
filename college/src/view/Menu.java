@@ -40,7 +40,8 @@ public class Menu {
                 break;
             }
             case 5: {
-                College.showCoursesByStudent();
+                Utils.showList(College.getStudents());
+                showCoursesByStudent();
                 showOptions();
                 break;
             }
@@ -55,9 +56,9 @@ public class Menu {
         }
     }
 
-    public static void showCourseDetails(){
+    private static int miniMenuOption(){
         System.out.println("0. Exit");
-        System.out.println("\nSelect a course to view details (or 0 to exit): ");
+        System.out.println("\nInput a valid id to view details (or 0 to exit): ");
 
         int choice = Utils.readInteger();
 
@@ -65,15 +66,33 @@ public class Menu {
             System.out.println("Exiting...");
             Menu.showOptions();
         }
+        return choice;
+    }
 
-        int index = College.getCourseIndexById(choice);
+    private static void showCoursesByStudent(){
+        int idStudent = miniMenuOption();
+        int index = Utils.getIndexById(idStudent, College.getStudents());
+
+        if(index != -1){
+            System.out.println("---------------------------------------------------------------------------------------------------------");
+            System.out.println("Student Details: " + College.getStudents().get(index).toString());
+            Utils.showList(College.coursesByStudentId(idStudent));
+        }else{
+            System.out.println("No Student found with Id: " + idStudent + ".");
+        }
+    }
+
+
+    private static void showCourseDetails(){
+        int idCourse = miniMenuOption();
+        int index = Utils.getIndexById(idCourse, College.getCourses());
 
         if(index != -1){
             System.out.println("---------------------------------------------------------------------------------------------------------");
             System.out.println("Course Details: " + College.getCourses().get(index).toString());
             Utils.showList(College.getCourses().get(index).getStudents());
         }else{
-            System.out.println("No course found with Id: " + choice + ".");
+            System.out.println("No course found with Id: " + idCourse + ".");
         }
     }
 }

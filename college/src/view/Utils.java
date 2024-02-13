@@ -1,7 +1,11 @@
 package view;
 
+import model.Identifiable;
+
 import java.util.ArrayList;
+import java.util.OptionalInt;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Utils {
     private static final Scanner scan = new Scanner(System.in);
@@ -34,5 +38,12 @@ public class Utils {
             System.out.println(item.toString());
         }
         System.out.println("---------------------------------------------------------------------------------------------------------");
+    }
+
+    public static <T extends Identifiable> int getIndexById(int id, ArrayList<T> items) {
+        OptionalInt indexOpt = IntStream.range(0, items.size())
+                .filter(i -> items.get(i).getId() == id)
+                .findFirst();
+        return indexOpt.orElse(-1);
     }
 }
