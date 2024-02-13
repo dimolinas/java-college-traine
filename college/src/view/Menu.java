@@ -5,14 +5,14 @@ import controller.College;
 
 public class Menu {
     public static void showOptions(){
-        System.out.println("---------------------Welcome To GloUniversity--------------");
+        System.out.println("---------------------------------------Welcome To GloUniversity-----------------------------------------");
         System.out.println("1. Show Professors");
         System.out.println("2. Show Courses");
         System.out.println("3. Create Student");
         System.out.println("4. Create Class");
         System.out.println("5. Show Classes By Student");
         System.out.println("6. Exit");
-        System.out.println("-------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
 
         System.out.print("Input: ");
         int option = Utils.readInteger();
@@ -25,12 +25,19 @@ public class Menu {
             }
             case 2:{
                 College.showCourses();
+                Menu.showOptions();
                 break;
             }
             case 3: {
                 showOptions();
             }
-            case 4:{
+            case 4: {
+                showOptions();
+            }
+            case 5: {
+                showOptions();
+            }
+            case 6:{
                 System.exit(0);
                 break;
             }

@@ -6,6 +6,7 @@ public class FullTimeProfessor extends Professor implements SalaryCalculator {
     public FullTimeProfessor(int id, String name, double baseSalary, int hoursPerWeek) {
         super(id, name, baseSalary);
         this.hoursPerWeek = hoursPerWeek;
+        calculateSalary();
     }
 
     public int getHoursPerWeek() {
@@ -18,6 +19,8 @@ public class FullTimeProfessor extends Professor implements SalaryCalculator {
 
     @Override
     public void calculateSalary() {
+        setTotalSalary(getBaseSalary() * getHoursPerWeek());
+        System.out.println("el");
     }
 
     @Override
@@ -27,6 +30,7 @@ public class FullTimeProfessor extends Professor implements SalaryCalculator {
                 ", name='" + getName() + '\'' +
                 ", baseSalary=" + getBaseSalary() +
                 ", hoursPerWeek=" + hoursPerWeek +
+                ", totalSalary=" + getTotalSalary() +
                 '}';
     }
 

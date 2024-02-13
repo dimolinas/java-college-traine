@@ -24,17 +24,19 @@ public class College {
         professors.add(new PartTimeProfessor(3, "Dr. Emily", 1000));
         professors.add(new PartTimeProfessor(4, "Dr. Brown", 1000));
 
-        courses.add(new Course(UUID.randomUUID(), "Computer Science 101", "B101", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(UUID.randomUUID(), "Mathematics 202", "B102", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(UUID.randomUUID(), "Physics 303", "C101", professors.getFirst(), new ArrayList<Student>()));
-        courses.add(new Course(UUID.randomUUID(), "Chemistry 404", "C102", professors.getFirst(), new ArrayList<Student>()));
-
         students.add(new Student(174545, "Alice", 20));
         students.add(new Student(2874855, "Bob", 21));
         students.add(new Student(374875, "Charlie", 22));
         students.add(new Student(4785458, "David", 23));
         students.add(new Student(57845, "Eva", 24));
         students.add(new Student(652010, "Frank", 25));
+
+        courses.add(new Course(UUID.randomUUID(), "Computer Science 101", "B101", professors.getFirst(), new ArrayList<Student>()));
+        courses.add(new Course(UUID.randomUUID(), "Mathematics 202", "B102", professors.getFirst(), new ArrayList<Student>()));
+        courses.add(new Course(UUID.randomUUID(), "Physics 303", "C101", professors.getFirst(), new ArrayList<Student>()));
+        courses.add(new Course(UUID.randomUUID(), "Chemistry 404", "C102", professors.getFirst(), new ArrayList<Student>()));
+
+
     }
 
     public static  void showProfessors(){
@@ -43,28 +45,27 @@ public class College {
         //sb.append(String.format("%-5s %-10s %-10s", "Id", "Name", "BaseSalary"));
         //System.out.println(sb.toString());
 
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
         for (Professor professor : professors) {
             System.out.println(professor.toString());
         }
-        System.out.println("------------------------------------------------------------");
-
+        System.out.println("---------------------------------------------------------------------------------------------------------");
     }
 
     public static void showCourses(){
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
         for (Course course : courses) {
             System.out.println(course.toString());
         }
-        System.out.println("------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
     }
 
     public static void showStudents(){
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
         for (Student student : students) {
             System.out.println(student.toString());
         }
-        System.out.println("------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
     }
 
     public static ArrayList<Course> getCourses() {
