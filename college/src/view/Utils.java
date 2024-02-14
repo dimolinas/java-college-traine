@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class Utils {
     private static final Scanner scan = new Scanner(System.in);
-    public static int readInteger(){
+    protected static int readInteger(){
         int validatedInteger = 0;
         boolean isValid = false;
 
@@ -27,11 +27,11 @@ public class Utils {
         return validatedInteger;
     }
 
-    public static String readString(){
+    protected static String readString(){
         return scan.nextLine();
     }
 
-    public static <T> void showList(ArrayList<T> list) {
+    protected static <T> void showList(ArrayList<T> list) {
         System.out.println("---------------------------------------------------------------------------------------------------------");
         for (T item : list) {
             System.out.println(item.toString());
@@ -39,12 +39,28 @@ public class Utils {
         System.out.println("---------------------------------------------------------------------------------------------------------");
     }
 
-    public static <T extends Identifiable> int getIndexById(int id, ArrayList<T> items) {
+    protected static <T extends Identifiable> int getIndexById(int id, ArrayList<T> items) {
         if(id <0 ) return -1;
 
         OptionalInt indexOpt = IntStream.range(0, items.size())
                 .filter(i -> items.get(i).getId() == id)
                 .findFirst();
         return indexOpt.orElse(-1);
+    }
+
+    protected static <T extends Identifiable> int newValidId(ArrayList<T> items, String itemType) {
+        int id;
+        while (true) {
+            System.out.print("Enter " + itemType + " Id: ");
+            id = Utils.readInteger();
+
+            int existingIndex = Utils.getIndexById(id, items);
+            if (existingIndex != -1) {
+                System.out.println("An " + itemType + " with this Id already exists. Please enter a different Id.");
+            } else {
+                break;
+            }
+        }
+        return id;
     }
 }

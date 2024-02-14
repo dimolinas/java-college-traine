@@ -33,7 +33,7 @@ public class Menu {
                 break;
             }
             case 3: {
-                College.createStudent();
+                createStudent();
                 showOptions();
                 break;
             }
@@ -59,25 +59,52 @@ public class Menu {
         }
     }
 
-    public static void createCourse(){
+
+    private static void createStudent(){
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+        System.out.println("                                         New Student                                                     ");
+        System.out.println("---------------------------------------------------------------------------------------------------------");
+
+        int id = Utils.newValidId(College.getStudents(), "Student");
+        System.out.print("Enter student name: ");
+        String name = Utils.readString();
+
+        System.out.print("Enter student age: ");
+        int age = Utils.readInteger();
+
+        Student newStudent = new Student(id, name, age);
+        College.getStudents().add(newStudent);
+
+        String moreCourses;
+        do {
+            Utils.showList(College.getCourses());
+            System.out.print("Enter the Id of the course to enroll the student in (or -1 to finish): ");
+
+            int courseId = Utils.readInteger();
+
+            if (courseId == -1) break;
+
+            int courseIndex = Utils.getIndexById(courseId, College.getCourses());
+
+            if (courseIndex != -1) {
+                College.getCourses().get(courseIndex).getStudents().add(newStudent);
+                System.out.println("The student has been enrolled in the course successfully.");
+            } else {
+                System.out.println("No Course found with Id: " + courseId + ".");
+            }
+
+            System.out.print("Add more courses? (yes/no): ");
+            moreCourses = Utils.readString();
+
+        } while (moreCourses.equalsIgnoreCase("yes"));
+    }
+
+    private static void createCourse(){
         System.out.println("---------------------------------------------------------------------------------------------------------");
         System.out.println("                                         New Course                                                      ");
         System.out.println("---------------------------------------------------------------------------------------------------------");
 
-
-        int id;
-
-        while(true) {
-            System.out.print("Enter course Id: ");
-            id = Utils.readInteger();
-
-            int existingCourseIndex = Utils.getIndexById(id, College.getCourses());
-            if(existingCourseIndex != -1) {
-                System.out.println("A course with this Id already exists. Please enter a different course Id.");
-            } else {
-                break;
-            }
-        }
+        int id = Utils.newValidId(College.getCourses(), "Course");
 
         System.out.print("Enter course name: ");
         String name = Utils.readString();

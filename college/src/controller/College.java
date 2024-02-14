@@ -50,12 +50,6 @@ public class College {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-
-    public static void createStudent(){
-
-    }
-
-
     public static ArrayList<Course> getCourses() {
         return courses;
     }
