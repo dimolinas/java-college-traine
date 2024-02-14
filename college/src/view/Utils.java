@@ -40,6 +40,8 @@ public class Utils {
     }
 
     public static <T extends Identifiable> int getIndexById(int id, ArrayList<T> items) {
+        if(id <0 ) return -1;
+
         OptionalInt indexOpt = IntStream.range(0, items.size())
                 .filter(i -> items.get(i).getId() == id)
                 .findFirst();

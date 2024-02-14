@@ -12,8 +12,8 @@ public class Menu {
         System.out.println("1. Show Professors");
         System.out.println("2. Show Courses");
         System.out.println("3. Create Student");
-        System.out.println("4. Create Class");
-        System.out.println("5. Show Classes By Student");
+        System.out.println("4. Create Courses");
+        System.out.println("5. Show Courses By Student");
         System.out.println("6. Exit");
         System.out.println("---------------------------------------------------------------------------------------------------------");
 
@@ -64,10 +64,22 @@ public class Menu {
         System.out.println("                                         New Course                                                      ");
         System.out.println("---------------------------------------------------------------------------------------------------------");
 
-        System.out.println("Enter course Id: ");
-        int id = Utils.readInteger();
 
-        System.out.println("Enter course name: ");
+        int id;
+
+        while(true) {
+            System.out.print("Enter course Id: ");
+            id = Utils.readInteger();
+
+            int existingCourseIndex = Utils.getIndexById(id, College.getCourses());
+            if(existingCourseIndex != -1) {
+                System.out.println("A course with this Id already exists. Please enter a different course Id.");
+            } else {
+                break;
+            }
+        }
+
+        System.out.print("Enter course name: ");
         String name = Utils.readString();
 
         System.out.print("Enter classroom: ");
@@ -75,12 +87,24 @@ public class Menu {
 
         System.out.println("---------------------------------------------------------------------------------------------------------");
         Utils.showList(College.getProfessors());
-        System.out.print("Enter the id of the professor for this course: ");
-        int professorId = Utils.readInteger();
 
-        int professorIndex = Utils.getIndexById(professorId, College.getProfessors());
+        int professorId;
+        int professorIndex;
+
+        while(true){
+            System.out.print("Enter the id of the professor for this course: ");
+            professorId = Utils.readInteger();
+
+            professorIndex = Utils.getIndexById(professorId, College.getProfessors());
+            if(professorIndex != -1){
+                break;
+            }else{
+                System.out.println("Invalid professor Id");
+            }
+
+        }
+
         Professor professor = College.getProfessors().get(professorIndex);
-
         ArrayList<Student> students = new ArrayList<>();
 
         String moreStudents;
@@ -88,19 +112,21 @@ public class Menu {
             Utils.showList(College.getStudents());
             System.out.print("Enter the Id of the student to add to this course (or -1 to finish): ");
             int studentId = Utils.readInteger();
-            if (studentId == -1) {
-                break; // Exit the loop if the user is finished adding students
-            }
+
+            if (studentId == -1) break;
+
             int studentIndex = Utils.getIndexById(studentId, College.getStudents());
+
             if (studentIndex != -1) {
                 students.add(College.getStudents().get(studentIndex));
             } else {
                 System.out.println("No Student found with Id: " + studentId + ".");
             }
+
             System.out.print("Add more students? (yes/no): ");
             moreStudents = Utils.readString();
-        } while (moreStudents.equalsIgnoreCase("yes"));
 
+        } while (moreStudents.equalsIgnoreCase("yes"));
         College.getCourses().add(new Course(id,name, classRoom, professor,students));
     }
 
